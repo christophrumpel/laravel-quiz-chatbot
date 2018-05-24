@@ -27,7 +27,7 @@ class HighscoreConversation extends Conversation
             $topUsersMessage = '';
 
             $topUsers->each(function ($user) use (&$topUsersMessage) {
-                $topUsersMessage .= $user->rank.' - '.$user->name.' '.$user->points."points \n";
+                $topUsersMessage .= $user->rank.' - '.$user->name.' '.$user->points." points \n";
             });
 
             $this->bot->reply('Here is the current highscore. Do you think you can do better? Start the quiz: /startquiz.');

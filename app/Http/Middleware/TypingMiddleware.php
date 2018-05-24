@@ -4,29 +4,23 @@ namespace App\Http\Middleware;
 
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\Interfaces\Middleware\Heard;
-use BotMan\BotMan\Interfaces\Middleware\Sending;
-use BotMan\BotMan\Interfaces\Middleware\Captured;
-use BotMan\BotMan\Interfaces\Middleware\Matching;
-use BotMan\BotMan\Interfaces\Middleware\Received;
 use BotMan\BotMan\Messages\Incoming\IncomingMessage;
 
-class TypingMiddleware implements Sending
+class TypingMiddleware implements Heard
 {
 
     /**
-     * Handle an outgoing message payload before/after it
-     * hits the message service.
+     * Handle a message that was successfully heard, but not processed yet.
      *
-     * @param mixed $payload
+     * @param \BotMan\BotMan\Messages\Incoming\IncomingMessage $message
      * @param BotMan $bot
      * @param $next
-     *
      * @return mixed
      */
-    public function sending($payload, $next, BotMan $bot)
+    public function heard(IncomingMessage $message, $next, BotMan $bot)
     {
         $bot->typesAndWaits(1);
 
-        return $next($payload);
+        return $next($message);
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Conversations;
 
-use BotMan\BotMan\Messages\Conversations\Conversation;
 use BotMan\BotMan\Messages\Incoming\Answer;
-use BotMan\BotMan\Messages\Outgoing\Actions\Button;
 use BotMan\BotMan\Messages\Outgoing\Question;
+use BotMan\BotMan\Messages\Outgoing\Actions\Button;
+use BotMan\BotMan\Messages\Conversations\Conversation;
 
 class WelcomeConversation extends Conversation
 {
@@ -30,7 +30,7 @@ class WelcomeConversation extends Conversation
         $question = Question::create('Welcome to the *LaravelQuiz Chatbot*! How well do you know your favourite PHP framework? Are you ready for the quiz?')
             ->addButtons([
                 Button::create('Sure')->value('yes'),
-                Button::create('Now now')->value('no'),
+                Button::create('Not now')->value('no'),
             ]);
 
         $this->ask($question, function (Answer $answer) {

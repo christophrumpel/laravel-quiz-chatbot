@@ -34,7 +34,7 @@ class Highscore extends Model
 
     public function getRank()
     {
-        return Highscore::all()->where('points', '>', $this->points)->count() + 1;
+        return Highscore::all()->where('points', '>', $this->points)->pluck('points')->unique()->count() + 1;
     }
 
     public static function topUsers()

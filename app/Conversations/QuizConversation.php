@@ -85,7 +85,7 @@ class QuizConversation extends Conversation
     private function showResult()
     {
         $this->bot->reply('Finished 🏁');
-        $this->bot->reply('You made it through all the questions. Your reached '.$this->userPoints.' points! Correct answers: '.$this->userCorrectAnswers.' / '.$this->questionCount);
+        $this->bot->reply('You made it through all the questions. You reached '.$this->userPoints.' points! Correct answers: '.$this->userCorrectAnswers.' / '.$this->questionCount);
 
         $this->askAboutHighscore();
     }

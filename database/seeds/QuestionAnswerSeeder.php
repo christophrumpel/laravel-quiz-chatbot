@@ -25,7 +25,6 @@ class QuestionAnswerSeeder extends Seeder
             ]);
 
             collect($question['answers'])->each(function ($answer) use ($createdQuestion) {
-
                 Answer::create([
                     'question_id' => $createdQuestion->id,
                     'text' => $answer['text'],
