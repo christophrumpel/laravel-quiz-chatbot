@@ -8,5 +8,5 @@ I am open for new features and improvements, but please talk to me first before 
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT License (MIT).
 
