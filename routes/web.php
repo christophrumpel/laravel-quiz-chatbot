@@ -14,9 +14,6 @@
 use App\Highscore;
 use Illuminate\Support\Facades\File;
 
-Route::get('/', function () {
-    return $topUsers = Highscore::topUsers();
-});
 
 Route::match(['get', 'post'], '/botman', 'BotManController@handle');
 Route::get('/botman/tinker', 'BotManController@tinker');
