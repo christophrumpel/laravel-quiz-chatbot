@@ -10,7 +10,7 @@ use App\Conversations\WelcomeConversation;
 $botman = resolve('botman');
 
 $typingMiddleware = new TypingMiddleware();
-$botman->middleware->heard($typingMiddleware);
+$botman->middleware->sending($typingMiddleware);
 
 $botman->hears('Hi', function ($bot) {
     $bot->reply('Hello!');
