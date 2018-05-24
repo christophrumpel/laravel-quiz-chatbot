@@ -104,7 +104,7 @@ class QuizConversation extends Conversation
                 $this->bot->reply('Done. Your rank is '.$user->getRank().'.');
                 $this->bot->startConversation(new HighscoreConversation());
             } elseif ($answer->getValue() === 'no') {
-                $this->bot->reply('Not problem. You were not added to the highscore. Still you can tell you friends about it 😉');
+                $this->bot->reply('Not problem. You were not added to the highscore. Still you can tell your friends about it 😉');
             } else {
                 $this->repeat('Sorry, I did not get that. Please use the buttons.');
             }
