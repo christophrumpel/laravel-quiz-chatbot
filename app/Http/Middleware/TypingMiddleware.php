@@ -3,9 +3,7 @@
 namespace App\Http\Middleware;
 
 use BotMan\BotMan\BotMan;
-use BotMan\BotMan\Interfaces\Middleware\Heard;
 use BotMan\BotMan\Interfaces\Middleware\Sending;
-use BotMan\BotMan\Messages\Incoming\IncomingMessage;
 
 class TypingMiddleware implements Sending
 {
