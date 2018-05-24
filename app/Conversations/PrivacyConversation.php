@@ -24,26 +24,26 @@ class PrivacyConversation extends Conversation
     {
         $user = Highscore::where('chat_id', $this->bot->getUser()->getId())->first();
 
-        if ($user) {
-            $this->bot->reply('We have stored your name and chat ID for showing you in the highscore.');
-            $question = Question::create('Do you want to get deleted?')->addButtons([
-                Button::create('Yes please')->value('yes'),
-                Button::create('Not now')->value('no'),
-            ]);
-
-            $this->ask($question, function (Answer $answer) {
-                if ($answer->getValue() === 'yes') {
-                    Highscore::deleteUser($this->bot->getUser()->getId());
-                    $this->bot->reply('Done! Your data has been deleted.');
-
-                } elseif ($answer->getValue() === 'no') {
-                    $this->bot->reply('Great to keep you 👍');
-                } else {
-                    $this->repeat('Sorry, I did not get that. Please use the buttons.');
-                }
-            });
-        } else {
-            $this->bot->reply('We have not stored any data of you.');
+        if (! $user) {
+            return $this->say('We have not stored any data of you.');
         }
+
+        $this->say('We have stored your name and chat ID for showing you in the highscore.');
+        $question = Question::create('Do you want to get deleted?')->addButtons([
+            Button::create('Yes please')->value('yes'),
+            Button::create('Not now')->value('no'),
+        ]);
+
+        $this->ask($question, function (Answer $answer) {
+            switch ($answer->getValue()) {
+                case 'yes':
+                    Highscore::deleteUser($this->bot->getUser()->getId());
+                    return $this->say('Done! Your data has been deleted.');
+                case 'no':
+                    return $this->say('Great to keep you 👍');
+                default:
+                    return $this->repeat('Sorry, I did not get that. Please use the buttons.');
+            }
+        });
     }
 }

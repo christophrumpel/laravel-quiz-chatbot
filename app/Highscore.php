@@ -14,37 +14,27 @@ class Highscore extends Model
 
     public static function saveUser(UserInterface $botUser, int $userPoints, int $userCorrectAnswers)
     {
-        $user = Highscore::updateOrCreate(['chat_id' => $botUser->getId()], [
+        $user = static::updateOrCreate(['chat_id' => $botUser->getId()], [
             'chat_id' => $botUser->getId(),
             'name' => $botUser->getFirstName().' '.$botUser->getLastName(),
             'points' => $userPoints,
             'correct_answers' => $userCorrectAnswers,
         ]);
 
-        if ($user->wasRecentlyCreated) {
-            $user->tries = 1;
-        } else {
-            $user->tries++;
-        }
+        $user->increment('tries');
 
         $user->save();
 
         return $user;
     }
 
-    public function getRank()
+    public function getRankAttribute()
     {
-        return Highscore::all()->where('points', '>', $this->points)->pluck('points')->unique()->count() + 1;
+        return static::query()->where('points', '>', $this->points)->pluck('points')->unique()->count() + 1;
     }
 
-    public static function topUsers()
+    public static function topUsers($size = 10)
     {
-        $topUsers = Highscore::all()->sortByDesc('points')->take(10);
-
-        $topUsers->each(function ($user) use ($topUsers) {
-            return $user->rank = $topUsers->where('points', '>', $user->points)->pluck('points')->unique()->count() + 1;
-        });
-
-        return $topUsers;
+        return static::query()->orderByDesc('points')->take($size)->get();
     }
 }

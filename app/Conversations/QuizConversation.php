@@ -42,17 +42,17 @@ class QuizConversation extends Conversation
 
     private function showInfo()
     {
-        $this->bot->reply('You will be shown '.$this->questionCount.' questions about Laravel. Every correct answer will reward you with a certain amount of points. Please keep it fair, and don\'t use any help. All the best! 🍀');
+        $this->say("You will be shown {$this->questionCount} questions about Laravel. Every correct answer will reward you with a certain amount of points. Please keep it fair, and don't use any help. All the best! 🍀");
         $this->checkForNextQuestion();
     }
 
     private function checkForNextQuestion()
     {
-        if ($this->quizQuestions->count() > 0) {
-            $this->askQuestion($this->quizQuestions->first());
-        } else {
-            $this->showResult();
+        if ($this->quizQuestions->count()) {
+            return $this->askQuestion($this->quizQuestions->first());
         }
+
+        $this->showResult();
     }
 
     private function askQuestion(Question $question)
@@ -61,31 +61,31 @@ class QuizConversation extends Conversation
             $quizAnswer = Answer::find($answer->getValue());
 
             if (! $quizAnswer) {
-                $this->bot->reply('Sry I did not get that. Please use the buttons.');
-                $this->checkForNextQuestion();
-            } else {
-                $this->quizQuestions->forget($question->id);
-
-                if ($quizAnswer->correct_one) {
-                    $this->userPoints += $question->points;
-                    $this->userCorrectAnswers++;
-                    $answerResult = ' ✅';
-                } else {
-                    $correctAnswer = $question->answers()->where('correct_one', true)->first()->text;
-                    $answerResult = ' ❌ (Correct: '.$correctAnswer.')';
-                }
-                $this->currentQuestion++;
-
-                $this->bot->reply('Your answer: '.$quizAnswer->text.$answerResult);
-                $this->checkForNextQuestion();
+                $this->say('Sry I did not get that. Please use the buttons.');
+                return $this->checkForNextQuestion();
             }
+
+            $this->quizQuestions->forget($question->id);
+
+            if ($quizAnswer->correct_one) {
+                $this->userPoints += $question->points;
+                $this->userCorrectAnswers++;
+                $answerResult = '✅';
+            } else {
+                $correctAnswer = $question->answers()->where('correct_one', true)->first()->text;
+                $answerResult = "❌ (Correct: {$correctAnswer})";
+            }
+            $this->currentQuestion++;
+
+            $this->say("Your answer: {$quizAnswer->text} {$answerResult}");
+            $this->checkForNextQuestion();
         });
     }
 
     private function showResult()
     {
-        $this->bot->reply('Finished 🏁');
-        $this->bot->reply('You made it through all the questions. You reached '.$this->userPoints.' points! Correct answers: '.$this->userCorrectAnswers.' / '.$this->questionCount);
+        $this->say('Finished 🏁');
+        $this->say("You made it through all the questions. You reached {$this->userPoints} points! Correct answers: {$this->userCorrectAnswers} / {$this->questionCount}");
 
         $this->askAboutHighscore();
     }
@@ -99,25 +99,24 @@ class QuizConversation extends Conversation
             ]);
 
         $this->ask($question, function (BotManAnswer $answer) {
-            if ($answer->getValue() === 'yes') {
-                $user = Highscore::saveUser($this->bot->getUser(), $this->userPoints, $this->userCorrectAnswers);
-                $this->bot->reply('Done. Your rank is '.$user->getRank().'.');
-                $this->bot->startConversation(new HighscoreConversation());
-            } elseif ($answer->getValue() === 'no') {
-                $this->bot->reply('Not problem. You were not added to the highscore. Still you can tell your friends about it 😉');
-            } else {
-                $this->repeat('Sorry, I did not get that. Please use the buttons.');
+            switch ($answer->getValue()) {
+                case 'yes':
+                    $user = Highscore::saveUser($this->bot->getUser(), $this->userPoints, $this->userCorrectAnswers);
+                    $this->say("Done. Your rank is {$user->rank}.");
+                    return $this->bot->startConversation(new HighscoreConversation());
+                case 'no':
+                    return $this->say('Not problem. You were not added to the highscore. Still you can tell your friends about it 😉');
+                default:
+                    return $this->repeat('Sorry, I did not get that. Please use the buttons.');
             }
         });
     }
 
     private function createQuestionTemplate(Question $question)
     {
-        $questionText = '➡️ Question: '.$this->currentQuestion.' / '.$this->questionCount.' : '.$question->text;
-        $questionTemplate = BotManQuestion::create($questionText);
-        $answers = $question->answers->shuffle();
+        $questionTemplate = BotManQuestion::create("➡️ Question: {$this->currentQuestion} / {$this->questionCount} : {$question->text}");
 
-        foreach ($answers as $answer) {
+        foreach ($question->answers->shuffle() as $answer) {
             $questionTemplate->addButton(Button::create($answer->text)->value($answer->id));
         }
 
