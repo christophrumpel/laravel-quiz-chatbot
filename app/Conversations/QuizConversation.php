@@ -42,7 +42,7 @@ class QuizConversation extends Conversation
 
     private function showInfo()
     {
-        $this->bot->reply('You will be shown '.$this->questionCount.' questions about Laravel. Every correct answer will reward you with a certain amount of points. Please keep it fair and don\'t use any help. All the best! 🍀');
+        $this->bot->reply('You will be shown '.$this->questionCount.' questions about Laravel. Every correct answer will reward you with a certain amount of points. Please keep it fair, and don\'t use any help. All the best! 🍀');
         $this->checkForNextQuestion();
     }
 
@@ -92,7 +92,7 @@ class QuizConversation extends Conversation
 
     private function askAboutHighscore()
     {
-        $question = BotManQuestion::create('Do you want to get added to the highscore list? Only your latest result will be saved. To achieve that, we need to store you name and chat id.')
+        $question = BotManQuestion::create('Do you want to get added to the highscore list? Only your latest result will be saved. To achieve that, we need to store your name and chat id.')
             ->addButtons([
                 Button::create('Yes please')->value('yes'),
                 Button::create('No')->value('no'),
