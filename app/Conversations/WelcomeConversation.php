@@ -21,7 +21,7 @@ class WelcomeConversation extends Conversation
 
     private function welcomeUser()
     {
-        $this->bot->reply('Hey '.$this->bot->getUser()->getFirstName().' 👋');
+        $this->say('Hey '.$this->bot->getUser()->getFirstName().' 👋');
         $this->askIfReady();
     }
 
@@ -35,12 +35,12 @@ class WelcomeConversation extends Conversation
 
         $this->ask($question, function (Answer $answer) {
             if ($answer->getValue() === 'yes') {
-                $this->bot->reply('Perfect!');
-                $this->bot->startConversation(new QuizConversation());
-            } else {
-                $this->bot->reply('😒');
-                $this->bot->reply('If you change your opinion, you can start the quiz at any time using the start command or by typing "start".');
+                $this->say('Perfect!');
+                return $this->bot->startConversation(new QuizConversation());
             }
+
+            $this->say('If you change your opinion, you can start the quiz at any time using the start command or by typing "start".');
+            $this->say('😒');
         });
     }
 }
