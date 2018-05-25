@@ -21,18 +21,16 @@ class HighscoreConversation extends Conversation
     {
         $topUsers = Highscore::topUsers();
 
-        if ($topUsers->count() == 0) {
-            $this->bot->reply('The highscore is still empty. Be the first one! 👍');
-        } else {
-            $topUsersMessage = '';
-
-            $topUsers->each(function ($user) use (&$topUsersMessage) {
-                $topUsersMessage .= $user->rank.' - '.$user->name.' '.$user->points." points \n";
-            });
-
-            $this->bot->reply('Here is the current highscore. Do you think you can do better? Start the quiz: /startquiz.');
-            $this->bot->reply('🏆 HIGHSCORE 🏆');
-            $this->bot->reply($topUsersMessage);
+        if (! $topUsers->count()) {
+            return $this->say('The highscore is still empty. Be the first one! 👍');
         }
+
+        $topUsers->transform(function ($user) {
+            return "{$user->rank} - {$user->name} {$user->points} points";
+        });
+
+        $this->say('Here is the current highscore. Do you think you can do better? Start the quiz: /startquiz.');
+        $this->say('🏆 HIGHSCORE 🏆');
+        $this->say($topUsers->implode("\n"));
     }
 }

@@ -12,7 +12,7 @@ $botman = resolve('botman');
 $typingMiddleware = new TypingMiddleware();
 $botman->middleware->sending($typingMiddleware);
 
-$botman->hears('Hi', function ($bot) {
+$botman->hears('Hi', function (BotMan $bot) {
     $bot->reply('Hello!');
 });
 
