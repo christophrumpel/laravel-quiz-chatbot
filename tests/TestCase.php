@@ -16,7 +16,7 @@ abstract class TestCase extends BaseTestCase
     protected $botman;
 
     /**
-     * @var BotManTester
+     * @var \BotMan\Studio\Testing\BotManTester
      */
     protected $bot;
 }
