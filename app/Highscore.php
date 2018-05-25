@@ -37,4 +37,9 @@ class Highscore extends Model
     {
         return static::query()->orderByDesc('points')->take($size)->get();
     }
+
+    public static function deleteUser(string $chatId)
+    {
+        Highscore::where('chat_id', $chatId)->delete();
+    }
 }
