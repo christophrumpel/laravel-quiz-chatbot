@@ -60,16 +60,28 @@ class QuizConversationTest extends TestCase
      **/
     public function it_shows_info_and_correct_answer_reply_result_and_highscore()
     {
-        list($question1, $question2) = $this->getQuestionTemplates();
+        $possibleQuestionTemplates = $this->getQuestionTemplates();
 
 
         $this->bot->receives('/startquiz')
             ->assertReply('You will be shown 1 questions about Laravel. Every correct answer will reward you with a certain amount of points. Please keep it fair, and don\'t use any help. All the best! 🍀')
-            ->assertTemplateIn([$question1, $question2])->receives('1')->assertReply('Your answer: Taylor ✅')
+            ->assertTemplateIn($possibleQuestionTemplates)->receives('1')->assertReply('Your answer: Taylor ✅')
             ->assertReply('Finished 🏁')
             ->assertReply('You made it through all the questions. You reached 100 points! Correct answers: 1 / 1')
             ->assertTemplate($this->getAksAboutHighscoreTemplate(), true)->receives('yes')->assertReply('Done. Your rank is 1.')
             ->assertReply('Here is the current highscore. Do you think you can do better? Start the quiz: /startquiz.');
+    }
+
+    /**
+     * @test
+     **/
+    public function it_repeats_question_after_unrecognized_input()
+    {
+        $possibleQuestionTemplates = $this->getQuestionTemplates();
+
+        $this->bot->receives('/startquiz')
+            ->assertReply('You will be shown 1 questions about Laravel. Every correct answer will reward you with a certain amount of points. Please keep it fair, and don\'t use any help. All the best! 🍀')
+            ->assertTemplateIn($possibleQuestionTemplates)->receives('unknown input')->assertReply('Sorry, I did not get that. Please use the buttons.');
     }
 
     /**
