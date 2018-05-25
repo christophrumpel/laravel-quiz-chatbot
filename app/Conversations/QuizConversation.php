@@ -61,7 +61,7 @@ class QuizConversation extends Conversation
             $quizAnswer = Answer::find($answer->getValue());
 
             if (! $quizAnswer) {
-                $this->say('Sry I did not get that. Please use the buttons.');
+                $this->say('Sorry, I did not get that. Please use the buttons.');
                 return $this->checkForNextQuestion();
             }
 

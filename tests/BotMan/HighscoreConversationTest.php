@@ -28,7 +28,7 @@ class HighscoreConversationTest extends TestCase
 
         $this->bot->receives('/highscore')->assertReply('Here is the current highscore. Do you think you can do better? Start the quiz: /startquiz.')
             ->assertReply('🏆 HIGHSCORE 🏆')
-            ->assertReply("1 - Jim Stevens 100 points \n");
+            ->assertReply("1 - Jim Stevens 100 points");
     }
 
 }

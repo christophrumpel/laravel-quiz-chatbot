@@ -39,8 +39,8 @@ class WelcomeConversation extends Conversation
                 return $this->bot->startConversation(new QuizConversation());
             }
 
-            $this->say('If you change your opinion, you can start the quiz at any time using the start command or by typing "start".');
             $this->say('😒');
+            $this->say('If you change your opinion, you can start the quiz at any time using the start command or by typing "start".');
         });
     }
 }
