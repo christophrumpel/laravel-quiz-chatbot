@@ -47,4 +47,9 @@ class Highscore extends Model
 
         return $topUsers;
     }
+
+    public static function deleteUser(string $chatId)
+    {
+        Highscore::where('chat_id', $chatId)->delete();
+    }
 }
