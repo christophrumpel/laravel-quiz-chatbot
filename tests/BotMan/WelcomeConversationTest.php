@@ -27,7 +27,7 @@ class WelcomeConversationTest extends TestCase
      */
     public function it_welcomes_user_and_replies_to_ready_answer_negative()
     {
-        $readyQuestion = Question::create('Welcome to the *LaravelQuiz Chatbot*! How well do you know your favourite PHP framework? Are you ready for the quiz?')
+        $readyQuestion = Question::create('Welcome to the *LaravelQuiz Chatbot* version 2! How well do you know your favourite PHP framework? Are you ready for the quiz?')
             ->addButtons([
                 Button::create('Sure')->value('yes'),
                 Button::create('Not now')->value('no'),
@@ -46,7 +46,7 @@ class WelcomeConversationTest extends TestCase
      */
     public function it_welcomes_user_and_replies_to_ready_answer_positive()
     {
-        $readyQuestion = Question::create('Welcome to the *LaravelQuiz Chatbot*! How well do you know your favourite PHP framework? Are you ready for the quiz?')
+        $readyQuestion = Question::create('Welcome to the *LaravelQuiz Chatbot* version 2! How well do you know your favourite PHP framework? Are you ready for the quiz?')
             ->addButtons([
                 Button::create('Sure')->value('yes'),
                 Button::create('Not now')->value('no'),

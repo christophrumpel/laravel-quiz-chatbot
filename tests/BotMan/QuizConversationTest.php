@@ -47,12 +47,12 @@ class QuizConversationTest extends TestCase
         $possibleQuestionTemplates = $this->getQuestionTemplates();
 
         $this->bot->receives('/startquiz')
-            ->assertReply('You will be shown 1 questions about Laravel. Every correct answer will reward you with a certain amount of points. Please keep it fair, and don\'t use any help. All the best! 🍀')
+            ->assertReply('You will be shown *1 questions* about Laravel. Every correct answer will reward you with a certain amount of points. Please keep it fair, and don\'t use any help. All the best! 🍀')
             ->assertReply('After choosing an answer, please wait for the next question before clicking again.')
             ->assertTemplateIn($possibleQuestionTemplates)->receives('2')
             ->assertReply('Your answer: Christoph ❌ (Correct: Taylor)')
             ->assertReply('Finished 🏁')
-            ->assertReply('You made it through all the questions. You reached *0* points! Correct answers: 0 / 1')
+            ->assertReply('You made it through all the questions. You reached *0 points*! Correct answers: 0 / 1')
             ->assertTemplate($this->getAksAboutHighscoreTemplate(), true)->receives('no')->assertReply('Not problem. You were not added to the highscore. Still you can tell your friends about it 😉');
     }
 
@@ -65,11 +65,11 @@ class QuizConversationTest extends TestCase
 
 
         $this->bot->receives('/startquiz')
-            ->assertReply('You will be shown 1 questions about Laravel. Every correct answer will reward you with a certain amount of points. Please keep it fair, and don\'t use any help. All the best! 🍀')
+            ->assertReply('You will be shown *1 questions* about Laravel. Every correct answer will reward you with a certain amount of points. Please keep it fair, and don\'t use any help. All the best! 🍀')
             ->assertReply('After choosing an answer, please wait for the next question before clicking again.')
             ->assertTemplateIn($possibleQuestionTemplates)->receives('1')->assertReply('Your answer: Taylor ✅')
             ->assertReply('Finished 🏁')
-            ->assertReply('You made it through all the questions. You reached *100* points! Correct answers: 1 / 1')
+            ->assertReply('You made it through all the questions. You reached *100 points*! Correct answers: 1 / 1')
             ->assertTemplate($this->getAksAboutHighscoreTemplate(), true)->receives('yes')->assertReply('Done. Your rank is 1.')
             ->assertReply('Here is the current highscore. Do you think you can do better? Start the quiz: /startquiz.');
     }
@@ -82,7 +82,7 @@ class QuizConversationTest extends TestCase
         $possibleQuestionTemplates = $this->getQuestionTemplates();
 
         $this->bot->receives('/startquiz')
-            ->assertReply('You will be shown 1 questions about Laravel. Every correct answer will reward you with a certain amount of points. Please keep it fair, and don\'t use any help. All the best! 🍀')
+            ->assertReply('You will be shown *1 questions* about Laravel. Every correct answer will reward you with a certain amount of points. Please keep it fair, and don\'t use any help. All the best! 🍀')
             ->assertReply('After choosing an answer, please wait for the next question before clicking again.')
             ->assertTemplateIn($possibleQuestionTemplates)->receives('unknown input')->assertReply('Sorry, I did not get that. Please use the buttons.');
     }
