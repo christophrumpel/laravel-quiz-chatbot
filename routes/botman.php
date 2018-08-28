@@ -22,7 +22,7 @@ $botman->hears('/start', function (BotMan $bot) {
 
 $botman->hears('start|/startQuiz', function (BotMan $bot) {
     $bot->startConversation(new QuizConversation());
-});
+})->stopsConversation();
 
 $botman->hears('/highscore|highscore', function (BotMan $bot) {
     $bot->startConversation(new HighscoreConversation());

@@ -43,6 +43,7 @@ class QuizConversation extends Conversation
     private function showInfo()
     {
         $this->say("You will be shown {$this->questionCount} questions about Laravel. Every correct answer will reward you with a certain amount of points. Please keep it fair, and don't use any help. All the best! 🍀");
+        $this->say('After choosing an answer, please wait for the next question before clicking again.');
         $this->checkForNextQuestion();
     }
 
@@ -85,7 +86,7 @@ class QuizConversation extends Conversation
     private function showResult()
     {
         $this->say('Finished 🏁');
-        $this->say("You made it through all the questions. You reached {$this->userPoints} points! Correct answers: {$this->userCorrectAnswers} / {$this->questionCount}");
+        $this->say("You made it through all the questions. You reached *{$this->userPoints}* points! Correct answers: {$this->userCorrectAnswers} / {$this->questionCount}", ['parse_mode', 'Markdown']);
 
         $this->askAboutHighscore();
     }
