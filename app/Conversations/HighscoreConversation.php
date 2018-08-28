@@ -26,11 +26,11 @@ class HighscoreConversation extends Conversation
         }
 
         $topUsers->transform(function ($user) {
-            return "{$user->rank} - {$user->name} {$user->points} points";
+            return "{$user->rank} - {$user->name} *{$user->points} points*";
         });
 
         $this->say('Here is the current highscore. Do you think you can do better? Start the quiz: /startquiz.');
         $this->say('🏆 HIGHSCORE 🏆');
-        $this->say($topUsers->implode("\n"));
+        $this->say($topUsers->implode("\n"), ['parse_mode' => 'Markdown']);
     }
 }
