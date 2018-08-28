@@ -86,7 +86,7 @@ class QuizConversation extends Conversation
     private function showResult()
     {
         $this->say('Finished 🏁');
-        $this->say("You made it through all the questions. You reached *{$this->userPoints} points*! Correct answers: {$this->userCorrectAnswers} / {$this->questionCount}", ['parse_mode', 'Markdown']);
+        $this->say("You made it through all the questions. You reached *{$this->userPoints} points*! Correct answers: {$this->userCorrectAnswers} / {$this->questionCount}", ['parse_mode' => 'Markdown']);
 
         $this->askAboutHighscore();
     }
