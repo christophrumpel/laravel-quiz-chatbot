@@ -11,6 +11,7 @@
 |
 */
 
+use App\User;
 use App\Highscore;
 use Illuminate\Support\Facades\File;
 

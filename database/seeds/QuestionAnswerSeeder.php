@@ -39,128 +39,128 @@ class QuestionAnswerSeeder extends Seeder
     {
         return collect([
             [
-                'question' => 'Who created Laravel?',
+                'question' => 'Is Laravel 6 an LTS release?',
                 'points' => '5',
                 'answers' => [
-                    ['text' => 'Christoph Rumpel', 'correct_one' => false],
-                    ['text' => 'Jeffrey Way', 'correct_one' => false],
-                    ['text' => 'Taylor Otwell', 'correct_one' => true],
+                    ['text' => 'Yes', 'correct_one' => true],
+                    ['text' => 'No', 'correct_one' => false],
                 ],
             ],
             [
                 'question' => 'Which of the following is a Laravel product?',
-                'points' => '10',
+                'points' => '5',
                 'answers' => [
-                    ['text' => 'Horizon', 'correct_one' => true],
-                    ['text' => 'Sunset', 'correct_one' => false],
-                    ['text' => 'Nightfall', 'correct_one' => true],
+                    ['text' => 'Laravel Fume', 'correct_one' => false],
+                    ['text' => 'Laravel Paper', 'correct_one' => false],
+                    ['text' => 'Laravel Vapor', 'correct_one' => true],
                 ],
             ],
             [
-                'question' => 'When did Taylor release the first version of Laravel?',
-                'points' => '20',
-                'answers' => [
-                    ['text' => '2009', 'correct_one' => false],
-                    ['text' => '2010', 'correct_one' => false],
-                    ['text' => '2011', 'correct_one' => true],
-                ],
-            ],
-            [
-                'question' => 'Which of these Symfony packages is NOT used in Laravel?',
-                'points' => '25',
-                'answers' => [
-                    ['text' => 'symfony / console', 'correct_one' => false],
-                    ['text' => 'symfony / http-kernel', 'correct_one' => false],
-                    ['text' => 'symfony / doctrine-bridge', 'correct_one' => true],
-                ],
-            ],
-            [
-                'question' => 'In which Laravel version where Blade components and slots introduced?',
-                'points' => '30',
-                'answers' => [
-                    ['text' => '5.4', 'correct_one' => true],
-                    ['text' => '5.5', 'correct_one' => false],
-                    ['text' => '5.6', 'correct_one' => false],
-                ],
-            ],
-            [
-                'question' => 'Who started the first Laravel Podcast?',
-                'points' => '20',
-                'answers' => [
-                    ['text' => 'Matt Stauffer', 'correct_one' => false],
-                    ['text' => 'Dayle Rees', 'correct_one' => false],
-                    ['text' => 'Shawn McCool', 'correct_one' => true],
-                ],
-            ],
-            [
-                'question' => 'Which is a method from the collection class?',
-                'points' => '20',
-                'answers' => [
-                    ['text' => 'median', 'correct_one' => true],
-                    ['text' => 'medion', 'correct_one' => false],
-                    ['text' => 'medial', 'correct_one' => false],
-                ],
-            ],
-            [
-                'question' => 'Finish the sentence: "Laravel - The PHP Framework For Web...',
-                'points' => '10',
-                'answers' => [
-                    ['text' => 'Performer', 'correct_one' => false],
-                    ['text' => 'Artisans', 'correct_one' => true],
-                    ['text' => 'Masters', 'correct_one' => false],
-                ],
-            ],
-            [
-                'question' => 'What PHP version does Laravel 5.6 require?',
-                'points' => '30',
-                'answers' => [
-                    ['text' => '>= 7.1.3', 'correct_one' => true],
-                    ['text' => '<= 7.1.2', 'correct_one' => false],
-                    ['text' => '>= 7.1.1', 'correct_one' => false],
-                ],
-            ],
-            [
-                'question' => 'Who designed the Laravel Documentation?',
-                'points' => '30',
-                'answers' => [
-                    ['text' => 'Steve Schoger', 'correct_one' => false],
-                    ['text' => 'Jack Mcdade', 'correct_one' => true],
-                    ['text' => 'Marcel Pociot', 'correct_one' => false],
-                ],
-            ],
-            [
-                'question' => 'How do you generate the Laravel application key?',
-                'points' => '30',
-                'answers' => [
-                    ['text' => 'php artisan generate:key', 'correct_one' => false],
-                    ['text' => 'php artisan key:generate', 'correct_one' => true],
-                    ['text' => 'php artisan make:key', 'correct_one' => false],
-                ],
-            ],
-            [
-                'question' => 'Laravel 5.6 is an LTS release?',
-                'points' => '20',
-                'answers' => [
-                    ['text' => 'False', 'correct_one' => true],
-                    ['text' => 'True', 'correct_one' => false],
-                ],
-            ],
-            [
-                'question' => 'We have one user in the database. What does User::all() return?',
-                'points' => '25',
-                'answers' => [
-                    ['text' => 'Array', 'correct_one' => false],
-                    ['text' => 'Collection', 'correct_one' => true],
-                    ['text' => 'User object', 'correct_one' => false],
-                ],
-            ],
-            [
-                'question' => 'Who was Laravel\'s first employee?',
+                'question' => 'With Laravel 6 there are finally middlewares for..?',
                 'points' => '15',
                 'answers' => [
-                    ['text' => 'Adam Wathan', 'correct_one' => false],
-                    ['text' => 'Mohamed Said', 'correct_one' => true],
-                    ['text' => 'Eric L. Barnes', 'correct_one' => false],
+                    ['text' => 'Views', 'correct_one' => false],
+                    ['text' => 'Commands', 'correct_one' => false],
+                    ['text' => 'Jobs', 'correct_one' => true],
+                ],
+            ],
+            [
+                'question' => 'What\'s the default error page on Laravel 6?',
+                'points' => '10',
+                'answers' => [
+                    ['text' => 'Whoops', 'correct_one' => false],
+                    ['text' => 'Ignition', 'correct_one' => true],
+                    ['text' => 'Clusterfuck', 'correct_one' => false],
+                ],
+            ],
+            [
+                'question' => '...allow you to run nested queries within one database query.',
+                'points' => '15',
+                'answers' => [
+                    ['text' => 'multiqueries', 'correct_one' => true],
+                    ['text' => 'subqueries', 'correct_one' => false],
+                    ['text' => 'doublequeries', 'correct_one' => false],
+                ],
+            ],
+            [
+                'question' => 'In order to create a real-time facade you need to...',
+                'points' => '20',
+                'answers' => [
+                    ['text' => 'extend the RealTimeFacade class', 'correct_one' => false],
+                    ['text' => 'load the RealTimeServiceProvider', 'correct_one' => false],
+                    ['text' => 'add \"Facades\" to the current namespace', 'correct_one' => true],
+                ],
+            ],
+            [
+                'question' => 'What is the correct syntax to create a model, a resource controller and a migration all at once with php artisan?',
+                'points' => '15',
+                'answers' => [
+                    ['text' => 'php artisan make:model ModelName --everything', 'correct_one' => false],
+                    ['text' => 'php artisan make:model ModelName --full', 'correct_one' => false],
+                    ['text' => 'php artisan make:model ModelName --all', 'correct_one' => true],
+                ],
+            ],
+            [
+                'question' => 'Let\s welcome the new Laravel crew member...',
+                'points' => '10',
+                'answers' => [
+                    ['text' => 'Chris Brown', 'correct_one' => false],
+                    ['text' => 'Shawn McCool', 'correct_one' => false],
+                    ['text' => 'James Brooks', 'correct_one' => true],
+                ],
+            ],
+            [
+                'question' => 'What PHP version does Laravel 6 require?',
+                'points' => '15',
+                'answers' => [
+                    ['text' => '>= 7.1.3', 'correct_one' => false],
+                    ['text' => '<= 7.3.', 'correct_one' => false],
+                    ['text' => '>= 7.2.0', 'correct_one' => true],
+                ],
+            ],
+            [
+                'question' => 'Pick the most performant way to count models?',
+                'points' => '15',
+                'answers' => [
+                    ['text' => 'Model::count()', 'correct_one' => false],
+                    ['text' => 'Model::all()->count()', 'correct_one' => true],
+                    ['text' => 'count(Model::all())', 'correct_one' => false],
+                ],
+            ],
+            [
+                'question' => 'Laravel 6.0 introduces...',
+                'points' => '5',
+                'answers' => [
+                    ['text' => 'custom versioning', 'correct_one' => false],
+                    ['text' => 'semantic versioning', 'correct_one' => true],
+                    ['text' => 'dynamic versioning', 'correct_one' => false],
+                ],
+            ],
+            [
+                'question' => 'The new LazyCollection feature is using PHP\'s ... under the hood.',
+                'points' => '10',
+                'answers' => [
+                    ['text' => 'Generators', 'correct_one' => true],
+                    ['text' => 'Alternator', 'correct_one' => false],
+                    ['text' => 'Phantomator', 'correct_one' => false],
+                ],
+            ],
+            [
+                'question' => 'By using the Notification facade, we are actually calling the...',
+                'points' => '20',
+                'answers' => [
+                    ['text' => 'NotificationSender class', 'correct_one' => false],
+                    ['text' => 'ChannelManager class', 'correct_one' => true],
+                    ['text' => 'NotificationManager class', 'correct_one' => false],
+                ],
+            ],
+            [
+                'question' => 'A project Taylor Otwell never released was called...',
+                'points' => '15',
+                'answers' => [
+                    ['text' => 'Laravel Ignition', 'correct_one' => false],
+                    ['text' => 'Laravel Plume', 'correct_one' => false],
+                    ['text' => 'Laravel Cloud', 'correct_one' => true],
                 ],
             ],
             [
@@ -173,28 +173,30 @@ class QuestionAnswerSeeder extends Seeder
                 ],
             ],
             [
-                'question' => 'What is the best way to interact with your Laravel application from the command line?',
-                'points' => '15',
-                'answers' => [
-                    ['text' => 'Using Laravel Tinker', 'correct_one' => true],
-                    ['text' => 'Using the native php interactive shell', 'correct_one' => false],
-                    ['text' => 'This is not possible', 'correct_one' => false],
-                ],
-            ],
-            [
-                'question' => '... allow you to format Eloquent attribute values when you retrieve them.',
+                'question' => "___User::where('name', 'Chris')->first();___ Where do we find the 'where' method?",
                 'points' => '20',
                 'answers' => [
-                    ['text' => 'Accessors', 'correct_one' => true],
-                    ['text' => 'Mutators', 'correct_one' => false],
+                    ['text' => 'The Eloquent Builder', 'correct_one' => true],
+                    ['text' => 'The Database Builder', 'correct_one' => false],
+                    ['text' => 'The User Model', 'correct_one' => false],
                 ],
             ],
             [
-                'question' => 'You want to randomize your items in a collection. What do you use?',
-                'points' => '25',
+                'question' => 'What is the largest PHP file (line numbers) in the Laravel framework.',
+                'points' => '20',
                 'answers' => [
-                    ['text' => '$collection->shuffle()', 'correct_one' => true],
-                    ['text' => '$collection->random()', 'correct_one' => false],
+                    ['text' => 'Support Facades Bus', 'correct_one' => false],
+                    ['text' => 'Database Query Builder', 'correct_one' => true],
+                    ['text' => 'Support Collection', 'correct_one' => false],
+                ],
+            ],
+            [
+                'question' => 'How many Spatie packages are in Laravel\'s core?',
+                'points' => '15',
+                'answers' => [
+                    ['text' => '0', 'correct_one' => true],
+                    ['text' => '1', 'correct_one' => false],
+                    ['text' => '2', 'correct_one' => false],
                 ],
             ],
             [
