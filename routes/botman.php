@@ -1,11 +1,11 @@
 <?php
 
-use App\Conversations\HighscoreConversation;
-use App\Conversations\PrivacyConversation;
-use App\Http\Middleware\TypingMiddleware;
 use BotMan\BotMan\BotMan;
 use App\Conversations\QuizConversation;
+use App\Http\Middleware\TypingMiddleware;
 use App\Conversations\WelcomeConversation;
+use App\Conversations\PrivacyConversation;
+use App\Conversations\HighscoreConversation;
 
 $botman = resolve('botman');
 

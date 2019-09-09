@@ -56,6 +56,24 @@ class QuestionAnswerSeeder extends Seeder
                 ],
             ],
             [
+                'question' => 'The name "Laravel" was made up by Taylor, it is a spinoff of...',
+                'points' => '20',
+                'answers' => [
+                    ['text' => 'an animal in Eragon', 'correct_one' => false],
+                    ['text' => 'a character in The Neverending Story', 'correct_one' => false],
+                    ['text' => 'a place in Narnia', 'correct_one' => true],
+                ],
+            ],
+            [
+                'question' => 'When you return an Eloquent model for a request, it will automatically create a JSON response. This is one of the jobs of the...',
+                'points' => '30',
+                'answers' => [
+                    ['text' => 'Eloquent Builder', 'correct_one' => false],
+                    ['text' => 'HTTP Kernel', 'correct_one' => false],
+                    ['text' => 'Router', 'correct_one' => true],
+                ],
+            ],
+            [
                 'question' => 'With Laravel 6 there are finally middlewares for..?',
                 'points' => '15',
                 'answers' => [
@@ -74,11 +92,11 @@ class QuestionAnswerSeeder extends Seeder
                 ],
             ],
             [
-                'question' => '...allow you to run nested queries within one database query.',
+                'question' => 'In Laravel 6,...allow you to run nested queries within one database query.',
                 'points' => '15',
                 'answers' => [
-                    ['text' => 'multiqueries', 'correct_one' => true],
-                    ['text' => 'subqueries', 'correct_one' => false],
+                    ['text' => 'multiqueries', 'correct_one' => false],
+                    ['text' => 'subqueries', 'correct_one' => true],
                     ['text' => 'doublequeries', 'correct_one' => false],
                 ],
             ],
@@ -88,20 +106,20 @@ class QuestionAnswerSeeder extends Seeder
                 'answers' => [
                     ['text' => 'extend the RealTimeFacade class', 'correct_one' => false],
                     ['text' => 'load the RealTimeServiceProvider', 'correct_one' => false],
-                    ['text' => 'add \"Facades\" to the current namespace', 'correct_one' => true],
+                    ['text' => 'prepend "Facades" to the namespace', 'correct_one' => true],
                 ],
             ],
             [
-                'question' => 'What is the correct syntax to create a model, a resource controller and a migration all at once with php artisan?',
+                'question' => 'What is the correct syntax to create a model, a resource controller and a migration all at once with artisan?',
                 'points' => '15',
                 'answers' => [
-                    ['text' => 'php artisan make:model ModelName --everything', 'correct_one' => false],
-                    ['text' => 'php artisan make:model ModelName --full', 'correct_one' => false],
-                    ['text' => 'php artisan make:model ModelName --all', 'correct_one' => true],
+                    ['text' => 'make:model ModelName --everything', 'correct_one' => false],
+                    ['text' => 'make:model ModelName --full', 'correct_one' => false],
+                    ['text' => 'make:model ModelName --all', 'correct_one' => true],
                 ],
             ],
             [
-                'question' => 'Let\s welcome the new Laravel crew member...',
+                'question' => 'Let\'s welcome the new Laravel crew member...',
                 'points' => '10',
                 'answers' => [
                     ['text' => 'Chris Brown', 'correct_one' => false],
@@ -122,8 +140,8 @@ class QuestionAnswerSeeder extends Seeder
                 'question' => 'Pick the most performant way to count models?',
                 'points' => '15',
                 'answers' => [
-                    ['text' => 'Model::count()', 'correct_one' => false],
-                    ['text' => 'Model::all()->count()', 'correct_one' => true],
+                    ['text' => 'Model::count()', 'correct_one' => true],
+                    ['text' => 'Model::all()->count()', 'correct_one' => false],
                     ['text' => 'count(Model::all())', 'correct_one' => false],
                 ],
             ],
@@ -142,7 +160,7 @@ class QuestionAnswerSeeder extends Seeder
                 'answers' => [
                     ['text' => 'Generators', 'correct_one' => true],
                     ['text' => 'Alternator', 'correct_one' => false],
-                    ['text' => 'Phantomator', 'correct_one' => false],
+                    ['text' => 'Reflections', 'correct_one' => false],
                 ],
             ],
             [
@@ -164,21 +182,20 @@ class QuestionAnswerSeeder extends Seeder
                 ],
             ],
             [
-                'question' => 'Which version of Laravel Spark was released earlier this year?',
+                'question' => 'You can use a Laravel controller without extending the "base" controller?',
                 'points' => '15',
                 'answers' => [
-                    ['text' => '4', 'correct_one' => false],
-                    ['text' => '5', 'correct_one' => false],
-                    ['text' => '6', 'correct_one' => true],
+                    ['text' => 'False', 'correct_one' => false],
+                    ['text' => 'True', 'correct_one' => true],
                 ],
             ],
             [
-                'question' => "___User::where('name', 'Chris')->first();___ Where do we find the 'where' method?",
+                'question' => 'If you use database transactions with Laravel, when will the "created" event for a new model be triggered?',
                 'points' => '20',
                 'answers' => [
-                    ['text' => 'The Eloquent Builder', 'correct_one' => true],
-                    ['text' => 'The Database Builder', 'correct_one' => false],
-                    ['text' => 'The User Model', 'correct_one' => false],
+                    ['text' => 'After you create the model', 'correct_one' => false],
+                    ['text' => 'After all queries were executed', 'correct_one' => true],
+                    ['text' => 'After all queries were executed successfully', 'correct_one' => false],
                 ],
             ],
             [
@@ -200,48 +217,48 @@ class QuestionAnswerSeeder extends Seeder
                 ],
             ],
             [
-                'question' => 'How can you check failed Laravel jobs?',
-                'points' => '30',
-                'answers' => [
-                    ['text' => 'Database', 'correct_one' => true],
-                    ['text' => 'Email', 'correct_one' => false],
-                    ['text' => 'Command line', 'correct_one' => false],
-                ],
-            ],
-            [
-                'question' => 'How many Laravel packages did Spatie release?',
-                'points' => '30',
-                'answers' => [
-                    ['text' => '40', 'correct_one' => false],
-                    ['text' => '60', 'correct_one' => true],
-                    ['text' => '90', 'correct_one' => false],
-                ],
-            ],
-            [
-                'question' => 'What does the collection method "zip" do?',
-                'points' => '25',
-                'answers' => [
-                    ['text' => 'Merges collection and array', 'correct_one' => true],
-                    ['text' => 'Creates a ZIP file', 'correct_one' => false],
-                    ['text' => 'Validates zip codes ', 'correct_one' => false],
-                ],
-            ],
-            [
-                'question' => 'What are form requests?',
-                'points' => '20',
-                'answers' => [
-                    ['text' => 'HTML form helpers', 'correct_one' => false],
-                    ['text' => 'Custom validation classes', 'correct_one' => true],
-                    ['text' => 'Form objects ', 'correct_one' => false],
-                ],
-            ],
-            [
-                'question' => 'What is the name of a former Envato author that helped making Laravel that famous?',
+                'question' => 'What does the following command do? "php artisan serve"',
                 'points' => '10',
                 'answers' => [
-                    ['text' => 'Jeffrey Way', 'correct_one' => true],
-                    ['text' => 'Jeffrey Route', 'correct_one' => false],
-                    ['text' => 'Annie Way', 'correct_one' => false],
+                    ['text' => 'It compiles your frontend assets.', 'correct_one' => false],
+                    ['text' => 'It spins up a local web server.', 'correct_one' => true],
+                    ['text' => 'It publishes every vendor configuration.', 'correct_one' => false],
+                ],
+            ],
+            [
+                'question' => 'Which integrated command caches all (cachable) resources at once?',
+                'points' => '20',
+                'answers' => [
+                    ['text' => 'php artisan cache', 'correct_one' => false],
+                    ['text' => 'php artisan cache:all', 'correct_one' => false],
+                    ['text' => 'php artisan optimize', 'correct_one' => true],
+                ],
+            ],
+            [
+                'question' => 'Why is the Laravel core components namespaced "Illuminate"?',
+                'points' => '25',
+                'answers' => [
+                    ['text' => 'Taylor is an Illuminati himself', 'correct_one' => false],
+                    ['text' => 'Abigail told him', 'correct_one' => false],
+                    ['text' => 'Codename for Laravel 4', 'correct_one' => true],
+                ],
+            ],
+            [
+                'question' => 'Who designed Laracon US 2019 website?',
+                'points' => '15',
+                'answers' => [
+                    ['text' => 'Steve Schoger', 'correct_one' => false],
+                    ['text' => 'Adam Wathan', 'correct_one' => false],
+                    ['text' => 'Jack McDade', 'correct_one' => true],
+                ],
+            ],
+            [
+                'question' => 'Who’s behind the video course Laravel Core Adventures?',
+                'points' => '15',
+                'answers' => [
+                    ['text' => 'Jeffrey Way', 'correct_one' => false],
+                    ['text' => 'Christoph Rumpel', 'correct_one' => true],
+                    ['text' => 'Caleb Porzio', 'correct_one' => false],
                 ],
             ],
         ]);

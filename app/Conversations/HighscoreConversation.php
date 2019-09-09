@@ -3,7 +3,10 @@
 namespace App\Conversations;
 
 use App\Highscore;
+use BotMan\BotMan\Messages\Outgoing\Actions\Button;
 use BotMan\BotMan\Messages\Conversations\Conversation;
+use BotMan\BotMan\Messages\Incoming\Answer as BotManAnswer;
+use BotMan\BotMan\Messages\Outgoing\Question as BotManQuestion;
 
 class HighscoreConversation extends Conversation
 {
@@ -26,11 +29,13 @@ class HighscoreConversation extends Conversation
         }
 
         $topUsers->transform(function ($user) {
-            return "{$user->rank} - {$user->name} *{$user->points} points*";
+            return "_{$user->rank} - {$user->name}_ *{$user->points} points*";
         });
 
-        $this->say('Here is the current highscore. Do you think you can do better? Start the quiz: /startquiz.');
+        $this->say('Here is the current highscore showing the top 10 results.');
         $this->say('🏆 HIGHSCORE 🏆');
         $this->say($topUsers->implode("\n"), ['parse_mode' => 'Markdown']);
+       $this->say('One of the ways to improve what you know about Laravel is by diving into https://laravelcoreadventures.com. If you want to play another round click: /start');
     }
+
 }

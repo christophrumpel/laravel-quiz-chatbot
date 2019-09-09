@@ -27,7 +27,7 @@ class WelcomeConversation extends Conversation
 
     private function askIfReady()
     {
-        $question = Question::create('Welcome to the *LaravelQuiz Chatbot* version 2! How well do you know your favourite PHP framework? Are you ready for the quiz?')
+        $question = Question::create('Welcome to the 3rd edition of the *LaravelQuiz Chatbot*! How well do you know your favourite PHP framework and its eco-system? Are you ready for the quiz?')
             ->addButtons([
                 Button::create('Sure')->value('yes'),
                 Button::create('Not now')->value('no'),
@@ -41,6 +41,8 @@ class WelcomeConversation extends Conversation
 
             $this->say('😒');
             $this->say('If you change your opinion, you can start the quiz at any time using the start command or by typing "start".');
-        });
+        }, [
+            'parse_mode' => 'Markdown'
+        ]);
     }
 }

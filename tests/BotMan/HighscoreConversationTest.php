@@ -26,9 +26,9 @@ class HighscoreConversationTest extends TestCase
     {
         Highscore::saveUser(new User('5', 'Jim', 'Stevens'), 100, 22);
 
-        $this->bot->receives('/highscore')->assertReply('Here is the current highscore. Do you think you can do better? Start the quiz: /startquiz.')
+        $this->bot->receives('/highscore')->assertReply('Here is the current highscore. If you want to play another round, click: /start')
             ->assertReply('🏆 HIGHSCORE 🏆')
-            ->assertReply("1 - Jim Stevens *100 points*");
+            ->assertReply("_1 - Jim Stevens_ *100 points*");
     }
 
 }

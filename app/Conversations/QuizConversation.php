@@ -3,6 +3,7 @@
 namespace App\Conversations;
 
 use App\Answer;
+use App\Played;
 use App\Question;
 use App\Highscore;
 use BotMan\BotMan\Messages\Outgoing\Actions\Button;
@@ -34,7 +35,8 @@ class QuizConversation extends Conversation
      */
     public function run()
     {
-        $this->quizQuestions = Question::all()->shuffle();
+        $this->quizQuestions = Question::all()
+            ->shuffle();
         $this->questionCount = $this->quizQuestions->count();
         $this->quizQuestions = $this->quizQuestions->keyBy('id');
         $this->showInfo();
@@ -42,9 +44,15 @@ class QuizConversation extends Conversation
 
     private function showInfo()
     {
-        $this->say("You will be shown *{$this->questionCount} questions* about Laravel. Every correct answer will reward you with a certain amount of points. Please keep it fair, and don't use any help. All the best! 🍀", ['parse_mode' => 'Markdown']);
-        $this->say('After choosing an answer, please wait for the next question before clicking again.');
-        $this->checkForNextQuestion();
+        $this->say("You will be shown *{$this->questionCount} questions* about Laravel. Every correct answer will reward you with a certain amount of points. Please keep it fair, and don't use any help. All the best! 🍀",
+            ['parse_mode' => 'Markdown']);
+        $this->say('💡 _After choosing an answer, please wait for the next question before clicking again._', [
+            'parse_mode' => 'Markdown',
+        ]);
+
+        $this->bot->typesAndWaits(3);
+
+        return $this->checkForNextQuestion();
     }
 
     private function checkForNextQuestion()
@@ -63,6 +71,7 @@ class QuizConversation extends Conversation
 
             if (! $quizAnswer) {
                 $this->say('Sorry, I did not get that. Please use the buttons.');
+
                 return $this->checkForNextQuestion();
             }
 
@@ -73,7 +82,9 @@ class QuizConversation extends Conversation
                 $this->userCorrectAnswers++;
                 $answerResult = '✅';
             } else {
-                $correctAnswer = $question->answers()->where('correct_one', true)->first()->text;
+                $correctAnswer = $question->answers()
+                    ->where('correct_one', true)
+                    ->first()->text;
                 $answerResult = "❌ (Correct: {$correctAnswer})";
             }
             $this->currentQuestion++;
@@ -85,18 +96,35 @@ class QuizConversation extends Conversation
 
     private function showResult()
     {
-        $this->say('Finished 🏁');
-        $this->say("You made it through all the questions. You reached *{$this->userPoints} points*! Correct answers: {$this->userCorrectAnswers} / {$this->questionCount}", ['parse_mode' => 'Markdown']);
+        Played::create([
+            'chat_id' => $this->bot->getUser()
+                ->getId(),
+            'points' => $this->userPoints,
+        ]);
 
-        $this->askAboutHighscore();
+        $this->say('Finished 🏁');
+        $this->say("You made it through all the questions. You reached *{$this->userPoints} points*! Correct answers: {$this->userCorrectAnswers} / {$this->questionCount}",
+            ['parse_mode' => 'Markdown']);
+
+        // Ask user about highscore
+        if (Played::where('chat_id', $this->bot->getUser()
+                ->getId())
+                ->count() === 1) {
+            return $this->askAboutHighscore();
+        }
+
+        return $this->alreadyHadHisChanceForTheHighscore();
+
     }
 
     private function askAboutHighscore()
     {
-        $question = BotManQuestion::create('Do you want to get added to the highscore list? Only your latest result will be saved. To achieve that, we need to store your name and chat id.')
+        $question = BotManQuestion::create('Do you want to get added to the highscore list? This was your first try, and only this one can be added to the highscore. To achieve that, we need to store your name and chat id.')
             ->addButtons([
-                Button::create('Yes please')->value('yes'),
-                Button::create('No')->value('no'),
+                Button::create('Yes please')
+                    ->value('yes'),
+                Button::create('No')
+                    ->value('no'),
             ]);
 
         $this->ask($question, function (BotManAnswer $answer) {
@@ -104,9 +132,32 @@ class QuizConversation extends Conversation
                 case 'yes':
                     $user = Highscore::saveUser($this->bot->getUser(), $this->userPoints, $this->userCorrectAnswers);
                     $this->say("Done. Your rank is {$user->rank}.");
+
                     return $this->bot->startConversation(new HighscoreConversation());
                 case 'no':
-                    return $this->say('Not problem. You were not added to the highscore. Still you can tell your friends about it 😉');
+                    return $this->say('No problem. You were not added to the highscore. Still, you can tell your friends about it 😉');
+                default:
+                    return $this->repeat('Sorry, I did not get that. Please use the buttons.');
+            }
+        });
+    }
+
+    private function alreadyHadHisChanceForTheHighscore()
+    {
+        $question = BotManQuestion::create('You already had your first try, so this new score cannot be added to the highscore. Do you still want to see it?')
+            ->addButtons([
+                Button::create('Highscore')
+                    ->value('highscore'),
+                Button::create('New Game')
+                    ->value('newgame'),
+            ]);
+
+        $this->ask($question, function (BotManAnswer $answer) {
+            switch ($answer->getValue()) {
+                case 'highscore':
+                    return $this->bot->startConversation(new HighscoreConversation());
+                case 'newgame':
+                    return $this->run();
                 default:
                     return $this->repeat('Sorry, I did not get that. Please use the buttons.');
             }
@@ -118,7 +169,8 @@ class QuizConversation extends Conversation
         $questionTemplate = BotManQuestion::create("➡️ Question: {$this->currentQuestion} / {$this->questionCount} : {$question->text}");
 
         foreach ($question->answers->shuffle() as $answer) {
-            $questionTemplate->addButton(Button::create($answer->text)->value($answer->id));
+            $questionTemplate->addButton(Button::create($answer->text)
+                ->value($answer->id));
         }
 
         return $questionTemplate;
