@@ -44,9 +44,10 @@ class QuizConversation extends Conversation
 
     private function showInfo()
     {
-        $this->say("You will be shown *{$this->questionCount} questions* about Laravel. Every correct answer will reward you with a certain amount of points. Please keep it fair, and don't use any help. All the best! 🍀",
+        $this->say("You will be shown *{$this->questionCount} questions* about Laravel. Every correct answer will reward you with a certain amount of points.",
             ['parse_mode' => 'Markdown']);
-        $this->say('💡 _After choosing an answer, please wait for the next question before clicking again._', [
+        $this->bot->typesAndWaits(1);
+        $this->say('💡🍀 Please keep it fair, and don\'t use any help. All the best!', [
             'parse_mode' => 'Markdown',
         ]);
 
@@ -66,6 +67,7 @@ class QuizConversation extends Conversation
 
     private function askQuestion(Question $question)
     {
+        $this->bot->typesAndWaits(1);
         $this->ask($this->createQuestionTemplate($question), function (BotManAnswer $answer) use ($question) {
             $quizAnswer = Answer::find($answer->getValue());
 
@@ -85,13 +87,18 @@ class QuizConversation extends Conversation
                 $correctAnswer = $question->answers()
                     ->where('correct_one', true)
                     ->first()->text;
-                $answerResult = "❌ (Correct: {$correctAnswer})";
+                $answerResult = "❌ _(Correct: {$correctAnswer})_";
             }
             $this->currentQuestion++;
 
-            $this->say("Your answer: {$quizAnswer->text} {$answerResult}");
+            $this->say("*Your answer:* {$quizAnswer->text} {$answerResult}", [
+                'parse_mode' => 'Markdown'
+            ]);
+            $this->bot->typesAndWaits(1);
             $this->checkForNextQuestion();
-        });
+        }, [
+            'parse_mode' => 'Markdown'
+        ]);
     }
 
     private function showResult()
@@ -166,7 +173,7 @@ class QuizConversation extends Conversation
 
     private function createQuestionTemplate(Question $question)
     {
-        $questionTemplate = BotManQuestion::create("➡️ Question: {$this->currentQuestion} / {$this->questionCount} : {$question->text}");
+        $questionTemplate = BotManQuestion::create("➡️ *Question {$this->currentQuestion} / {$this->questionCount}* \n {$question->text}");
 
         foreach ($question->answers->shuffle() as $answer) {
             $questionTemplate->addButton(Button::create($answer->text)

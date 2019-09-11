@@ -33,9 +33,12 @@ class HighscoreConversation extends Conversation
         });
 
         $this->say('Here is the current highscore showing the top 10 results.');
+        $this->bot->typesAndWaits(1);
         $this->say('🏆 HIGHSCORE 🏆');
+        $this->bot->typesAndWaits(1);
         $this->say($topUsers->implode("\n"), ['parse_mode' => 'Markdown']);
-       $this->say('One of the ways to improve what you know about Laravel is by diving into https://laravelcoreadventures.com. If you want to play another round click: /start');
+        $this->bot->typesAndWaits(2);
+        $this->say("If you want to play another round click: /start \nOne of the ways to improve what you know about Laravel is by diving into https://laravelcoreadventures.com.");
     }
 
 }

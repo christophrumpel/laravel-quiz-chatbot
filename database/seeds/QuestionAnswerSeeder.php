@@ -56,7 +56,7 @@ class QuestionAnswerSeeder extends Seeder
                 ],
             ],
             [
-                'question' => 'The name "Laravel" was made up by Taylor, it is a spinoff of...',
+                'question' => 'The name "_Laravel_" was made up by Taylor, it is a spinoff of...',
                 'points' => '20',
                 'answers' => [
                     ['text' => 'an animal in Eragon', 'correct_one' => false],
@@ -74,7 +74,7 @@ class QuestionAnswerSeeder extends Seeder
                 ],
             ],
             [
-                'question' => 'With Laravel 6 there are finally middlewares for..?',
+                'question' => 'With Laravel 6 there are finally middlewares for...?',
                 'points' => '15',
                 'answers' => [
                     ['text' => 'Views', 'correct_one' => false],
@@ -92,7 +92,7 @@ class QuestionAnswerSeeder extends Seeder
                 ],
             ],
             [
-                'question' => 'In Laravel 6,...allow you to run nested queries within one database query.',
+                'question' => 'In Laravel 6, ...allow you to run nested queries within one database query.',
                 'points' => '15',
                 'answers' => [
                     ['text' => 'multiqueries', 'correct_one' => false],
@@ -110,7 +110,7 @@ class QuestionAnswerSeeder extends Seeder
                 ],
             ],
             [
-                'question' => 'What is the correct syntax to create a model, a resource controller and a migration all at once with artisan?',
+                'question' => 'What is the correct syntax to create a _model_, _controller_, _migration_ and a _factory_ all at once with artisan?',
                 'points' => '15',
                 'answers' => [
                     ['text' => 'make:model ModelName --everything', 'correct_one' => false],
@@ -119,7 +119,7 @@ class QuestionAnswerSeeder extends Seeder
                 ],
             ],
             [
-                'question' => 'Let\'s welcome the new Laravel crew member...',
+                'question' => 'Let\'s welcome the new Laravel team member...',
                 'points' => '10',
                 'answers' => [
                     ['text' => 'Chris Brown', 'correct_one' => false],
@@ -155,7 +155,7 @@ class QuestionAnswerSeeder extends Seeder
                 ],
             ],
             [
-                'question' => 'The new LazyCollection feature is using PHP\'s ... under the hood.',
+                'question' => 'The new _LazyCollection_ feature is using PHP\'s ... under the hood.',
                 'points' => '10',
                 'answers' => [
                     ['text' => 'Generators', 'correct_one' => true],
@@ -190,16 +190,16 @@ class QuestionAnswerSeeder extends Seeder
                 ],
             ],
             [
-                'question' => 'If you use database transactions with Laravel, when will the "created" event for a new model be triggered?',
-                'points' => '20',
+                'question' => 'You use database transactions with Laravel. When will the "_created event_" for a new model be triggered? After...',
+                'points' => '30',
                 'answers' => [
-                    ['text' => 'After you create the model', 'correct_one' => false],
-                    ['text' => 'After all queries were executed', 'correct_one' => true],
-                    ['text' => 'After all queries were executed successfully', 'correct_one' => false],
+                    ['text' => 'you create the model', 'correct_one' => true],
+                    ['text' => 'all queries were executed', 'correct_one' => false],
+                    ['text' => 'all queries were executed successfully', 'correct_one' => false],
                 ],
             ],
             [
-                'question' => 'What is the largest PHP file (line numbers) in the Laravel framework.',
+                'question' => 'What is the largest PHP file in the Laravel framework.(regarding line numbers)',
                 'points' => '20',
                 'answers' => [
                     ['text' => 'Support Facades Bus', 'correct_one' => false],
@@ -217,7 +217,7 @@ class QuestionAnswerSeeder extends Seeder
                 ],
             ],
             [
-                'question' => 'What does the following command do? "php artisan serve"',
+                'question' => 'What does the following command do? "_php artisan serve_"',
                 'points' => '10',
                 'answers' => [
                     ['text' => 'It compiles your frontend assets.', 'correct_one' => false],
@@ -235,16 +235,16 @@ class QuestionAnswerSeeder extends Seeder
                 ],
             ],
             [
-                'question' => 'Why is the Laravel core components namespaced "Illuminate"?',
-                'points' => '25',
+                'question' => 'Why is the Laravel core components namespaced "_Illuminate_"?',
+                'points' => '20',
                 'answers' => [
                     ['text' => 'Taylor is an Illuminati himself', 'correct_one' => false],
-                    ['text' => 'Abigail told him', 'correct_one' => false],
+                    ['text' => 'Abigail told Taylor', 'correct_one' => false],
                     ['text' => 'Codename for Laravel 4', 'correct_one' => true],
                 ],
             ],
             [
-                'question' => 'Who designed Laracon US 2019 website?',
+                'question' => 'Who designed the _Laracon US 2019_ website?',
                 'points' => '15',
                 'answers' => [
                     ['text' => 'Steve Schoger', 'correct_one' => false],
@@ -253,10 +253,10 @@ class QuestionAnswerSeeder extends Seeder
                 ],
             ],
             [
-                'question' => 'Who’s behind the video course Laravel Core Adventures?',
+                'question' => 'Who\'s behind the video course Laravel Core Adventures?',
                 'points' => '15',
                 'answers' => [
-                    ['text' => 'Jeffrey Way', 'correct_one' => false],
+                    ['text' => 'Miguel Piedrafita', 'correct_one' => false],
                     ['text' => 'Christoph Rumpel', 'correct_one' => true],
                     ['text' => 'Caleb Porzio', 'correct_one' => false],
                 ],

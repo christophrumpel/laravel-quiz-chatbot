@@ -21,28 +21,35 @@ class WelcomeConversation extends Conversation
 
     private function welcomeUser()
     {
-        $this->say('Hey '.$this->bot->getUser()->getFirstName().' 👋');
+        $this->say('Hey '.$this->bot->getUser()
+                ->getFirstName().' 👋');
+        $this->bot->typesAndWaits(1);
         $this->askIfReady();
     }
 
     private function askIfReady()
     {
-        $question = Question::create('Welcome to the 3rd edition of the *LaravelQuiz Chatbot*! How well do you know your favourite PHP framework and its eco-system? Are you ready for the quiz?')
+        $question = Question::create('Welcome to the *3rd* edition of the ✨*LaravelQuiz Chatbot*✨! How well do you know your favourite PHP framework and its eco-system? Let\'s find out! Are you ready for the quiz?')
             ->addButtons([
-                Button::create('Sure')->value('yes'),
-                Button::create('Not now')->value('no'),
+                Button::create('Yes 😎')
+                    ->value('yes'),
+                Button::create('Not now 😐')
+                    ->value('no'),
             ]);
 
         $this->ask($question, function (Answer $answer) {
+            $this->bot->typesAndWaits(1);
             if ($answer->getValue() === 'yes') {
                 $this->say('Perfect!');
+                $this->bot->typesAndWaits(1);
+
                 return $this->bot->startConversation(new QuizConversation());
             }
 
-            $this->say('😒');
-            $this->say('If you change your opinion, you can start the quiz at any time using the start command or by typing "start".');
+            $this->say('Ok, then another time.');
+            $this->say('If you change your opinion, you can start the quiz at any time using the /start command or by typing "start".');
         }, [
-            'parse_mode' => 'Markdown'
+            'parse_mode' => 'Markdown',
         ]);
     }
 }

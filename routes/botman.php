@@ -6,11 +6,14 @@ use App\Http\Middleware\TypingMiddleware;
 use App\Conversations\WelcomeConversation;
 use App\Conversations\PrivacyConversation;
 use App\Conversations\HighscoreConversation;
+use App\Http\Middleware\PreventDoubleClicks;
 
 $botman = resolve('botman');
 
-$typingMiddleware = new TypingMiddleware();
-$botman->middleware->sending($typingMiddleware);
+//$typingMiddleware = new TypingMiddleware();
+//$botman->middleware->sending($typingMiddleware);
+
+$botman->middleware->captured(new PreventDoubleClicks);
 
 $botman->hears('Hi', function (BotMan $bot) {
     $bot->reply('Hello!');
