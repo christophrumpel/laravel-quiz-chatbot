@@ -51,7 +51,7 @@ class QuizConversation extends Conversation
             'parse_mode' => 'Markdown',
         ]);
 
-        $this->bot->typesAndWaits(3);
+        $this->bot->typesAndWaits(2);
 
         return $this->checkForNextQuestion();
     }
