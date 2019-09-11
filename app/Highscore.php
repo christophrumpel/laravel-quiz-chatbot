@@ -33,7 +33,7 @@ class Highscore extends Model
         return static::query()->where('points', '>', $this->points)->pluck('points')->unique()->count() + 1;
     }
 
-    public static function topUsers($size = 10)
+    public static function topUsers($size = 15)
     {
         return static::query()->orderByDesc('points')->take($size)->get();
     }

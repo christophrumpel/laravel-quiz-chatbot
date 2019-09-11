@@ -32,7 +32,7 @@ class HighscoreConversation extends Conversation
             return "_{$user->rank} - {$user->name}_ *{$user->points} points*";
         });
 
-        $this->say('Here is the current highscore showing the top 10 results.');
+        $this->say('Here is the current highscore showing the top 15 results.');
         $this->bot->typesAndWaits(1);
         $this->say('🏆 HIGHSCORE 🏆');
         $this->bot->typesAndWaits(1);

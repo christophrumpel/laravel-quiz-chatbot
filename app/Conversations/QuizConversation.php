@@ -109,7 +109,7 @@ class QuizConversation extends Conversation
             'points' => $this->userPoints,
         ]);
         $this->bot->typesAndWaits(1);
-        $this->say('Finished 🏁');
+        $this->say('🏁 Finished 🏁');
         $this->bot->typesAndWaits(1);
         $this->say("You made it through all the questions. You reached *{$this->userPoints} points*! Correct answers: {$this->userCorrectAnswers} / {$this->questionCount}",
             ['parse_mode' => 'Markdown']);
