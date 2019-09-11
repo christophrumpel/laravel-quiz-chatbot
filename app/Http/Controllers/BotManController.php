@@ -25,7 +25,7 @@ class BotManController extends Controller
             info('error catched: '.$e->getMessage());
             $fromId = request()->all()['message']['from']['id'] ?? request()->all()['callback_query']['from']['id'];
 
-            $botman->say('🚧 Something did not go as planned 😕 We are sorry.', $fromId, TelegramDriver::class);
+            $botman->say('🚧 Something did not go as planned. 😕 We are sorry.', $fromId, TelegramDriver::class);
             $botman->say('Please try to /start the game again or contact Christoph on Twitter https://twitter.com/christophrumpel.',
                 $fromId, TelegramDriver::class);
 
