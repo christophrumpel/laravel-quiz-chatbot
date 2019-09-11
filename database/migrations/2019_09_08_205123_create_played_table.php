@@ -13,7 +13,7 @@ class CreatePlayedTable extends Migration
      */
     public function up()
     {
-        Schema::create('Played', function (Blueprint $table) {
+        Schema::create('played', function (Blueprint $table) {
             $table->increments('id');
             $table->string('chat_id');
             $table->integer('points')->default(0);
