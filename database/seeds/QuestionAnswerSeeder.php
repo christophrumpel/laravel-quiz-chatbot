@@ -261,6 +261,15 @@ class QuestionAnswerSeeder extends Seeder
                     ['text' => 'Caleb Porzio', 'correct_one' => false],
                 ],
             ],
+            [
+                'question' => 'When joining a table to an Eloquent query, how does Laravel handle the _joined table columns?_',
+                'points' => '35',
+                'answers' => [
+                    ['text' => 'Includes them all', 'correct_one' => true],
+                    ['text' => 'Doesn\'t include them', 'correct_one' => false],
+                    ['text' => 'Resolves conflicts automatically', 'correct_one' => false],
+                ],
+            ],
         ]);
     }
 }
