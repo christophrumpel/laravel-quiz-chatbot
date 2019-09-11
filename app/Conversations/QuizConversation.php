@@ -173,7 +173,7 @@ class QuizConversation extends Conversation
 
     private function createQuestionTemplate(Question $question)
     {
-        $questionTemplate = BotManQuestion::create("➡️ *Question {$this->currentQuestion} / {$this->questionCount}* \n {$question->text}");
+        $questionTemplate = BotManQuestion::create("➡️ *Question {$this->currentQuestion} / {$this->questionCount}* \n{$question->text}");
 
         foreach ($question->answers->shuffle() as $answer) {
             $questionTemplate->addButton(Button::create($answer->text)
