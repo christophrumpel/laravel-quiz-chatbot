@@ -190,12 +190,12 @@ class QuestionAnswerSeeder extends Seeder
                 ],
             ],
             [
-                'question' => 'You use database transactions with Laravel. When will the "_created event_" for a new model be triggered? After...',
+                'question' => 'You use a database transaction with Laravel for two queries. The first one calls the create method on a model. The second one fails. When will the "_created event_" be triggered?',
                 'points' => '30',
                 'answers' => [
-                    ['text' => 'you create the model', 'correct_one' => true],
-                    ['text' => 'all queries were executed', 'correct_one' => false],
-                    ['text' => 'all queries were executed successfully', 'correct_one' => false],
+                    ['text' => 'After the first query', 'correct_one' => true],
+                    ['text' => 'After the last query', 'correct_one' => false],
+                    ['text' => 'Never, because no model in the DB', 'correct_one' => false],
                 ],
             ],
             [
